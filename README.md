@@ -1,8 +1,9 @@
 # 🖥️ Java Task Scheduler Simulator
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+<br/>
 ![OS Concepts](https://img.shields.io/badge/OS-Scheduling-blueviolet?style=for-the-badge)
-![CLI](https://img.shields.io/badge/Interface-CLI-lightgrey?style=for-the-badge)
+
 
 ## 🧠 Overview
 

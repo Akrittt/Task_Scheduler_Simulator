@@ -43,13 +43,13 @@ It calculates and displays:
 ---
 
 ## 📊 Output
-Initial processes
+Initial processes:<br/>
 <img width="312" height="170" alt="image" src="https://github.com/user-attachments/assets/98948509-32a0-4f2b-85fd-6ef0feb39852" />
 <br/>
-FCFS
+FCFS:<br/>
 <img width="689" height="367" alt="image" src="https://github.com/user-attachments/assets/7f30eedc-8059-4aa5-af3c-66c6f95ebf75" />
 <br/>
-SJF
+SJF:<br/>
 <img width="691" height="366" alt="image" src="https://github.com/user-attachments/assets/0429bb25-0748-42e3-90ce-9c20bacc4faa" />
 
 

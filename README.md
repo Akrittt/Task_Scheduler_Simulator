@@ -51,6 +51,9 @@ FCFS:<br/>
 <br/>
 SJF:<br/>
 <img width="691" height="366" alt="image" src="https://github.com/user-attachments/assets/0429bb25-0748-42e3-90ce-9c20bacc4faa" />
+<br/>
+SRJF:<br/>
+<img width="765" height="372" alt="image" src="https://github.com/user-attachments/assets/3d5fede2-46a4-4a05-a981-0d2c2cea0f6e" />
 
 
 

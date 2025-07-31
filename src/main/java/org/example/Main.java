@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.algorithms.FirstComeFirstServe;
 import org.example.algorithms.ShortestJobFirst;
+import org.example.algorithms.ShortestRemainingJobFirst;
 import org.example.model.ProcessEntity;
 import org.example.model.SchedulerResult;
 import org.example.utils.GanttChartPrinter;
@@ -50,9 +51,29 @@ public class Main {
         ganttPrinter1.printGanttChart(resultfcfs.getGanttChartData());
 
         //SHORTEST JOB FIRST (NON-PREEMPTIVE)
-        ShortestJobFirst sjf = new ShortestJobFirst();
-        SchedulerResult resultsjf = sjf.schedule(processes);
+        ShortestJobFirst sjfnp = new ShortestJobFirst();
+        SchedulerResult resultsjfnp = sjfnp.schedule(processes);
         System.out.println("\n--- Scheduling Results for SJF (NON-PREEMPTIVE) ---");
+        System.out.printf("%-5s %-12s %-10s %-15s %-15s %-12s %-12s\n",
+                "ID", "Arrival", "Burst", "Start Time", "Completion", "Turnaround", "Waiting");
+        for (ProcessEntity p : resultsjfnp.getScheduleProcesses()) {
+            System.out.printf("%-5d %-12d %-10d %-15d %-15d %-12d %-12d\n",
+                    p.getId(), p.getArrivalTime(), p.getBurstTime(),
+                    p.getStartTime(), p.getCompletionTime(),
+                    p.getTurnaroundTime(), p.getWaitingTime());
+        }
+
+        System.out.println("\nAverage Waiting Time: " + String.format("%.2f", resultsjfnp.getAverageWaitingTime()));
+        System.out.println("Average Turnaround Time: " + String.format("%.2f", resultsjfnp.getAverageTurnaroundTime()));
+
+        // Print Gantt Chart
+        GanttChartPrinter ganttPrinter2 = new GanttChartPrinter();
+        ganttPrinter2.printGanttChart(resultsjfnp.getGanttChartData());
+
+        //SHORTEST JOB FIRST(PREEMPTIVE)
+        ShortestRemainingJobFirst sjf = new ShortestRemainingJobFirst();
+        SchedulerResult resultsjf = sjf.schedule(processes);
+        System.out.println("\n--- Scheduling Results for SJF (PREEMPTIVE) OR SRJF ---");
         System.out.printf("%-5s %-12s %-10s %-15s %-15s %-12s %-12s\n",
                 "ID", "Arrival", "Burst", "Start Time", "Completion", "Turnaround", "Waiting");
         for (ProcessEntity p : resultsjf.getScheduleProcesses()) {
@@ -66,7 +87,10 @@ public class Main {
         System.out.println("Average Turnaround Time: " + String.format("%.2f", resultsjf.getAverageTurnaroundTime()));
 
         // Print Gantt Chart
-        GanttChartPrinter ganttPrinter2 = new GanttChartPrinter();
-        ganttPrinter2.printGanttChart(resultsjf.getGanttChartData());
+        GanttChartPrinter ganttPrinter3 = new GanttChartPrinter();
+        ganttPrinter3.printGanttChart(resultsjf.getGanttChartData());
     }
+
+
+
 }

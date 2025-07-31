@@ -24,11 +24,11 @@ public class ProcessEntity {
         this.turnaroundTime = -1 ;
         this.waitingTime = -1 ;
         this.startTime = -1 ;
-        this.remainingBurstTime = -1 ;
+        this.remainingBurstTime = burstTime ;
     }
 
     public void decrementRemainingBurstTime() {
-        if (this.remainingBurstTime > 0) {
+        if (this.remainingBurstTime> 0) {
             this.remainingBurstTime--;
         }
     }

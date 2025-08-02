@@ -45,6 +45,9 @@ public class ProcessEntity {
             this.remainingBurstTime--;
         }
     }
+    public void decrementRemainingBurstTime(int runTime) {
+        this.remainingBurstTime -= runTime ;
+    }
 
 
 

@@ -1,0 +1,11 @@
+org\example\model\GanttChart.class
+org\example\Main.class
+org\example\utils\GanttChartPrinter.class
+org\example\model\ProcessEntity.class
+org\example\algorithms\FirstComeFirstServe.class
+org\example\algorithms\RoundRobin.class
+org\example\algorithms\ShortestRemainingJobFirst.class
+org\example\model\SchedulerResult.class
+org\example\algorithms\ShortestJobFirst.class
+org\example\algorithms\PriorityNonPreemptive.class
+org\example\algorithms\PriorityPreemptive.class

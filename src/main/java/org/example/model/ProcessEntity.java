@@ -15,11 +15,24 @@ public class ProcessEntity {
     private int waitingTime;
     private int startTime;
     private int remainingBurstTime;
+    private int priority;
 
     public ProcessEntity(int id, int arrivalTime, int burstTime){
         this.id = id;
         this.arrivalTime = arrivalTime ;
         this.burstTime = burstTime;
+        this.completionTime = -1 ;
+        this.turnaroundTime = -1 ;
+        this.waitingTime = -1 ;
+        this.startTime = -1 ;
+        this.remainingBurstTime = burstTime ;
+    }
+
+    public ProcessEntity(int id, int arrivalTime, int burstTime, int priority){
+        this.id = id;
+        this.arrivalTime = arrivalTime ;
+        this.burstTime = burstTime;
+        this.priority = priority;
         this.completionTime = -1 ;
         this.turnaroundTime = -1 ;
         this.waitingTime = -1 ;

@@ -1,8 +1,6 @@
 package org.example;
 
-import org.example.algorithms.FirstComeFirstServe;
-import org.example.algorithms.ShortestJobFirst;
-import org.example.algorithms.ShortestRemainingJobFirst;
+import org.example.algorithms.*;
 import org.example.model.ProcessEntity;
 import org.example.model.SchedulerResult;
 import org.example.utils.GanttChartPrinter;
@@ -47,8 +45,8 @@ public class Main {
         System.out.println("\nAverage Waiting Time: " + String.format("%.2f", resultfcfs.getAverageWaitingTime()));
         System.out.println("Average Turnaround Time: " + String.format("%.2f", resultfcfs.getAverageTurnaroundTime()));
 
-        GanttChartPrinter ganttPrinter1 = new GanttChartPrinter();
-        ganttPrinter1.printGanttChart(resultfcfs.getGanttChartData());
+        GanttChartPrinter ganttPrinter = new GanttChartPrinter();
+        ganttPrinter.printGanttChart(resultfcfs.getGanttChartData());
 
         //SHORTEST JOB FIRST (NON-PREEMPTIVE)
         ShortestJobFirst sjfnp = new ShortestJobFirst();
@@ -67,8 +65,8 @@ public class Main {
         System.out.println("Average Turnaround Time: " + String.format("%.2f", resultsjfnp.getAverageTurnaroundTime()));
 
         // Print Gantt Chart
-        GanttChartPrinter ganttPrinter2 = new GanttChartPrinter();
-        ganttPrinter2.printGanttChart(resultsjfnp.getGanttChartData());
+        GanttChartPrinter ganttPrinter1 = new GanttChartPrinter();
+        ganttPrinter1.printGanttChart(resultsjfnp.getGanttChartData());
 
         //SHORTEST JOB FIRST(PREEMPTIVE)
         ShortestRemainingJobFirst sjf = new ShortestRemainingJobFirst();
@@ -87,8 +85,76 @@ public class Main {
         System.out.println("Average Turnaround Time: " + String.format("%.2f", resultsjf.getAverageTurnaroundTime()));
 
         // Print Gantt Chart
+        GanttChartPrinter ganttPrinter2 = new GanttChartPrinter();
+        ganttPrinter2.printGanttChart(resultsjf.getGanttChartData());
+
+
+        //PRIORITY SCHEDULING
+
+        ArrayList<ProcessEntity> processesPriotrity = new ArrayList<>(Arrays.asList(
+                new ProcessEntity(1, 0, 8, 3),
+                new ProcessEntity(2, 1, 4, 1),
+                new ProcessEntity(3, 2, 9, 4),
+                new ProcessEntity(4, 3, 5, 2)
+        ));
+
+        //NON PREEMPTIVE
+        System.out.println("\nInitial Processes:");
+        System.out.printf("%-5s %-12s %-10s %-8s\n", "ID", "Arrival Time", "Burst Time", "Priority");
+        for (ProcessEntity p : processesPriotrity) {
+            System.out.printf("%-5d %-12d %-10d %-8d\n", p.getId(), p.getArrivalTime(), p.getBurstTime(), p.getPriority());
+        }
+
+        // 2. Instantiate Priority Scheduler
+        PriorityNonPreemptive nonPreemptive = new PriorityNonPreemptive();
+
+        // 3. Run Scheduling
+        SchedulerResult result = nonPreemptive.schedule(processesPriotrity);
+
+        // 4. Print Results
+        System.out.println("\n--- Scheduling Results FOR PRIORITY(NON PREEMPTIVE) ---");
+        System.out.printf("%-5s %-12s %-10s %-8s %-15s %-15s %-12s %-12s\n",
+                "ID", "Arrival", "Burst", "Priority", "Start Time", "Completion", "Turnaround", "Waiting");
+        for (ProcessEntity p : result.getScheduleProcesses()) {
+            System.out.printf("%-5d %-12d %-10d %-8d %-15d %-15d %-12d %-12d\n",
+                    p.getId(), p.getArrivalTime(), p.getBurstTime(), p.getPriority(),
+                    p.getStartTime(), p.getCompletionTime(),
+                    p.getTurnaroundTime(), p.getWaitingTime());
+        }
+
+        System.out.println("\nAverage Waiting Time: " + String.format("%.2f", result.getAverageWaitingTime()));
+        System.out.println("Average Turnaround Time: " + String.format("%.2f", result.getAverageTurnaroundTime()));
+
+        // Print Gantt Chart
         GanttChartPrinter ganttPrinter3 = new GanttChartPrinter();
-        ganttPrinter3.printGanttChart(resultsjf.getGanttChartData());
+        ganttPrinter3.printGanttChart(result.getGanttChartData());
+
+        //PREEMPTIVE
+
+        // Instantiate Priority Scheduler
+        PriorityPreemptive Preemptive = new PriorityPreemptive();
+
+        // Run Scheduling
+        SchedulerResult result2 = Preemptive.schedule(processesPriotrity);
+
+        // Print Results
+        System.out.println("\n--- Scheduling Results FOR PRIORITY(PREEMPTIVE) ---");
+        System.out.printf("%-5s %-12s %-10s %-8s %-15s %-15s %-12s %-12s\n",
+                "ID", "Arrival", "Burst", "Priority", "Start Time", "Completion", "Turnaround", "Waiting");
+        for (ProcessEntity p : result2.getScheduleProcesses()) {
+            System.out.printf("%-5d %-12d %-10d %-8d %-15d %-15d %-12d %-12d\n",
+                    p.getId(), p.getArrivalTime(), p.getBurstTime(), p.getPriority(),
+                    p.getStartTime(), p.getCompletionTime(),
+                    p.getTurnaroundTime(), p.getWaitingTime());
+        }
+
+        System.out.println("\nAverage Waiting Time: " + String.format("%.2f", result2.getAverageWaitingTime()));
+        System.out.println("Average Turnaround Time: " + String.format("%.2f", result2.getAverageTurnaroundTime()));
+
+        // Print Gantt Chart
+        GanttChartPrinter ganttPrinter4 = new GanttChartPrinter();
+        ganttPrinter4.printGanttChart(result2.getGanttChartData());
+
     }
 
 

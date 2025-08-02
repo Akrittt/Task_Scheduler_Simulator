@@ -31,8 +31,33 @@ It displays detailed process metrics and generates a Gantt chart to visualize pr
 
 ---
 
+## 🛠️ How to Run
 
+### 🧾 Prerequisites
 
+- Java 17 or above installed  
+  > You can check with `java -version`
+
+---
+
+### 🚀 Run Using the JAR
+
+1. Clone this repo or download the JAR file:
+```bash
+git clone https://github.com/Akrittt/Task_Scheduler_Simulator.git
+cd Task_Scheduler_Simulator/target
+
+```
+
+3. Run the JAR:
+```bash
+java -jar Scheduler-1.0-SNAPSHOT.jar
+
+```
+
+📍 Authors
+Made by Akrit Gupta
+For academic purposes and practical understanding of CPU scheduling.
 
 
 

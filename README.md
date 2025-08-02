@@ -31,25 +31,6 @@ It displays detailed process metrics and generates a Gantt chart to visualize pr
 
 ---
 
-## 📦 Folder Structure
-.
-├── org.example.model
-│ ├── ProcessEntity.java
-│ ├── GanttChart.java
-│ └── SchedulerResult.java
-│
-├── org.example.algorithms
-│ ├── RoundRobin.java
-│ ├── PriorityPreemptive.java
-│ ├── PriorityNonPreemptive.java
-│ |── ShortestRemainingJobFirst.java
-| |──ShortestJobFirst.java
-| └──FirstComeFirstServe.java
-│
-├── org.example.utils
-│ └── GanttChartPrinter.java
-│
-└── Main.java
 
 
 
